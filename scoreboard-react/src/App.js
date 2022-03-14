@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
 import Player from './components/Player'
+import Addplayer from './components/Addplayer';
 import './App.css';
 
 // const player = [
@@ -23,10 +24,10 @@ class App extends React.Component {
 
   state = {
     player: [
-      { name: "Sufail", score: 12, id: 1 },
-      { name: "Sanjaa", score: 22, id: 2 },
-      { name: "Sanchir", score: 34, id: 3 },
-      { name: "Sumail", score: 12, id: 4 },
+      { name: "Sufail", score: 1, id: 1 },
+      { name: "Sanjaa", score: 0, id: 2 },
+      { name: "Sanchir", score: 10, id: 3 },
+      { name: "Sumail", score: 0, id: 4 },
     ],
   };
 
@@ -37,6 +38,7 @@ class App extends React.Component {
   //         }
   //     })
   // }
+
 
 
   incrementScore = (id) => {
@@ -77,12 +79,15 @@ class App extends React.Component {
   };
 
 
-  addPlayer = () =>{
+  addPlayer = (e) =>{
+    let a = this.state.player.length;
+    let b = this.state.player[a-1].id + 1
+    e.preventDefault()
     let namee = document.getElementById("sdashunre").value
     this.setState((prevState) =>{
         let sda = Math.random()
           return{
-              player : [...prevState.player, {name: namee, score: 0, id: sda}]
+              player : [...prevState.player, {name: namee, score: 0, id: b}]
               // player: [...prevState.player.score, '1'],
               // player: [...prevState.player.id, 10]
 
@@ -99,10 +104,16 @@ class App extends React.Component {
     });
   };
 
+
+
   render() {
+
     return (
+
       <div className="scoreboard">
-        <Header title="scoreboard" totalPlayer={this.state.player.length} />
+        <Header title="scoreboard" totalPlayer={this.state.player.length}
+        players ={this.state.player}
+      />
         {this.state.player.map((player, i) => (
           <Player
             name={player.name}
@@ -116,11 +127,10 @@ class App extends React.Component {
 
           />
         ))}
-        <form action="">
 
-        <input type="text" id='sdashunre' />
-        <input type="button" onClick={this.addPlayer}/>
-        </form>
+          <Addplayer  function = {this.addPlayer}/>
+
+        
       </div>
     );
   }
