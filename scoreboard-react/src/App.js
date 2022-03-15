@@ -85,7 +85,7 @@ class App extends React.Component {
     e.preventDefault()
     let namee = document.getElementById("sdashunre").value
     this.setState((prevState) =>{
-        let sda = Math.random()
+
           return{
               player : [...prevState.player, {name: namee, score: 0, id: b}]
               // player: [...prevState.player.score, '1'],
@@ -104,10 +104,12 @@ class App extends React.Component {
     });
   };
 
+  
 
 
   render() {
 
+    console.log(Date.now() - 100000000000000);
     return (
 
       <div className="scoreboard">
