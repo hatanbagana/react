@@ -11,6 +11,7 @@ function Header(props) {
   // console.log(c);
 
 
+
     return (
       <header>
         <Stats totalPlayer = {props.totalPlayer}

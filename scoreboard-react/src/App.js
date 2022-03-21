@@ -2,7 +2,9 @@ import React from 'react'
 import Header from './components/Header'
 import Player from './components/Player'
 import Addplayer from './components/Addplayer';
+import Playerlist from './components/Playerlist';
 import './App.css';
+import { Provider } from './components/context';
 
 // const player = [
 //   { name: "Sufail", score: 12, id: 1 },
@@ -24,58 +26,142 @@ class App extends React.Component {
 
   state = {
     player: [
-      { name: "Sufail", score: 1, id: 1 },
-      { name: "Sanjaa", score: 0, id: 2 },
-      { name: "Sanchir", score: 10, id: 3 },
-      { name: "Sumail", score: 0, id: 4 },
+      { name: "Sufail", score: 0, id: 1, bool: false},
+      { name: "Sanjaa", score: 0, id: 2, bool: false },
+      { name: "Sanchir", score: 0, id: 3, bool: false },
+      { name: "Sumail", score: 0, id: 4, bool: false },
     ],
+    maxScore: 0,
+    id1: 0,
+    id2: 0,
+
   };
 
-  // addPlayer = () =>{
-  //     this.setState((prevState) =>{
-  //         return{
-  //             player: prevState.player.push('aa')
-  //         }
-  //     })
+  // Crown = () => {
+
+  //   let a = this.state.player.map((e)=>{
+    
+  //     return Math.max(e.score)
+  //   })
+  //   let Max = Math.max(...a)
+
+  //   this.setState((prevState) => {
+  //     return { maxScore: true };
+  //   });
+    
+  //   // console.log(Math.max(...a));
+
+
+  //   this.state.player.map(e=>{
+  //     if(Max == e.score && e.score !== 0){
+  //       document.getElementById(`${e.id}a`).setAttribute('class', 'is-high-score')
+
+  //       console.log(e.id);
+  //   //     this.setState(prevState =>{
+  //   //   const updatedPlayer = [...prevState.player];
+  //   //   const newPlayer = {...updatedPlayer[id]};
+
+
+  //   //   // console.log(updatedPlayer);
+  //   //   // console.log(newPlayer);
+
+
+  //   //   updatedPlayer[id].score =  newPlayer.score +=1
+  //   //   return{
+  //   //     player: updatedPlayer
+  //   //   }
+
+  //   // })
+  //     }else{
+  //       this.setState((prevState) => {
+  //         return { id1: false };
+  //       });
+  //       document.getElementById(`${e.id}a`).setAttribute('class', '')
+  //     }
+
+  //   })
+  //   // console.log(Max);
+
+
+
+  //   // this.setState(prevState=>{
+  //   //   return {id1: this.state.id[0].id}
+  //   // })
+
+
+
+
+
+
+
+
+
   // }
 
+  highscore = () =>{
+
+      const score = this.state.player.map(p => p.score)
+      const highscore = Math.max(...score)
+      if(highscore > 0){
+        return highscore
+      }
+      else{
+
+        return null
+      }
+
+
+
+    
+  }
 
 
   incrementScore = (id) => {
 
+    
+    
     this.setState(prevState =>{
       const updatedPlayer = [...prevState.player];
       const newPlayer = {...updatedPlayer[id]};
-      console.log('ho');
-
-      console.log(updatedPlayer);
-      console.log(newPlayer);
-
-
+      
+      
+      // console.log(updatedPlayer);
+      // console.log(newPlayer);
+      
+      
       updatedPlayer[id].score =  newPlayer.score +=1
       return{
-        player: updatedPlayer
+        player: updatedPlayer,
       }
-
+      
     })
+
+    let a = this.state.player.map((e)=>{
+    
+      return Math.max(e.score)
+    })
+    let Max = Math.max(...a)
+
+
     };
 
   dicrementScore = (id) => {
     this.setState(prevState =>{
       const updatedPlayer = [...prevState.player];
       const newPlayer = {...updatedPlayer[id]};
-      console.log('ho');
-
-      console.log(updatedPlayer);
-      console.log(newPlayer);
-
-
+      
+      
+      // console.log(updatedPlayer);
+      // console.log(newPlayer);
+      
+      
       updatedPlayer[id].score =  newPlayer.score -=1
       return{
         player: updatedPlayer
       }
-
+      
     })
+    // this.Crown()
   };
 
 
@@ -99,6 +185,7 @@ class App extends React.Component {
   }
 
   removePlayer = (id) => {
+
     this.setState((prevState) => {
       return { player: prevState.player.filter((p) => p.id !== id) };
     });
@@ -109,14 +196,18 @@ class App extends React.Component {
 
   render() {
 
-    console.log(Date.now() - 100000000000000);
+
+
     return (
 
       <div className="scoreboard">
+      <Provider 
+      value={this.state.player}>
+
         <Header title="scoreboard" totalPlayer={this.state.player.length}
         players ={this.state.player}
       />
-        {this.state.player.map((player, i) => (
+        {/* {this.state.player.map((player, i) => (
           <Player
             name={player.name}
             score={player.score}
@@ -126,15 +217,28 @@ class App extends React.Component {
             removePlayer={this.removePlayer}
             incrementScore = {this.incrementScore}
             dicrementScore = {this.dicrementScore}
-
+            ishighscore = {(this.highscore() == player.score)}
+            // crown = {this.Crown}
+            // bool = {this.state.id1? 'is-high-score' : null}
           />
-        ))}
+          
+        ))} */}
+        <Playerlist 
+        index={this.state.player.length} 
+        removePlayer = {this.removePlayer}
+        incrementScore = {this.incrementScore}
+        dicrementScore = {this.dicrementScore}
+        ishighscore = {this.highscore}
+         />
 
           <Addplayer  function = {this.addPlayer}/>
+
+      </Provider>
 
         
       </div>
     );
+
   }
 }
 
