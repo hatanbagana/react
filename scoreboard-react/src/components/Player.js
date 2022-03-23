@@ -6,27 +6,71 @@ import Crown from './Crown';
 class  Player  extends React.Component{
 
   state = {
+    name: this.props.name,
     boolen: false
   }
   
 
   
   show = () =>{
+
     this.setState(prevState=>{
-      return{
-        boolen: true
+      if(this.state.boolen){
+        return {
+          boolen: false
+        }
+      }
+      else{
+        return {
+          boolen: true
+        }
       }
     })
   }
 
-  changeName = () =>{
-    return this.props.name
+
+    changeName = (e) =>{
+
+    if(this.state.boolen){
+
+
+      e.preventDefault()
+ 
+      this.setState((prevState)=>{
+        return{
+          name: e.target.value,
+
+        }
+      })
+
+    }
+
+
+
+  }
+
+  func_submit = () =>{
+
+
+    this.setState(prevState=>{
+     return{
+       boolen: false
+     }
+    })
+    this.props.changeName(this.state.name, this.props.id)
   }
   
   render(){
-  const aa = <input type="text" onChange={this.changeName} value={this.changeName} />
 
-  console.log(this.state.boolen);
+  const aa =
+  <form id='formshuu' onSubmit={this.func_submit} >
+    <input autoComplete='off' onSubmit={this.func_submit} onChange={this.changeName} id='sdashunree' type="text"  />
+  </form>
+  
+  const bb = <span onClick={this.show} id={this.props.index}>{this.state.name}</span>
+
+  // console.log(this.state.boolen);
+
 
   return (
     <div className="player">
@@ -42,7 +86,8 @@ class  Player  extends React.Component{
       id={this.props.id}
       ishighscore = {this.props.ishighscore}
       />
-      <span onClick={this.show} id={this.props.index}>{this.state.boolen? aa : this.props.name}</span>
+      {/* <span onClick={this.show} id={this.props.index}>{this.props.name}</span> */}
+      {this.state.boolen? aa : bb}
       
       </div>
       <Counter 

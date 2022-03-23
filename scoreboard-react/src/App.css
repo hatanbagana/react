@@ -30,6 +30,36 @@ form {
   background-color: #8063FA;
 }
 
+
+
+#formshuu{
+  border-radius: 5px;
+  display: inline-block;
+
+  border-style: none;
+  text-shadow: none;
+  text-transform: uppercase;
+  color: black;
+  letter-spacing: 2px;
+  outline: none;
+  background-color: white;
+
+}
+
+#formshuu input[type=text] {
+  flex-grow: 1;
+  border-width: 0 0 1px 0;
+  margin: 15px 10px 15px 15px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #5B45B9;
+  border-style: none;
+  text-shadow: none;
+  text-transform: uppercase;
+  color: #C7BCF8;
+  letter-spacing: 2px;
+  outline: none;
+}
 input[type=text] {
   flex-grow: 1;
   border-width: 0 0 1px 0;

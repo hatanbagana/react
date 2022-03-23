@@ -37,66 +37,29 @@ class App extends React.Component {
 
   };
 
-  // Crown = () => {
+  ChangeName = (name, id) =>{
+    console.log(name, id);
+    this.setState((prevState)=>{
 
-  //   let a = this.state.player.map((e)=>{
-    
-  //     return Math.max(e.score)
-  //   })
-  //   let Max = Math.max(...a)
+      const updatedPlayer = [...prevState.player];
+      const newPlayer = {...updatedPlayer[id-1]};
+      
+      
+      // console.log(updatedPlayer);
+      // console.log(newPlayer);
+      
+      
+      updatedPlayer[id-1].name =  name
+      updatedPlayer[id-1].score =  0
+      return{
+        player: updatedPlayer,
 
-  //   this.setState((prevState) => {
-  //     return { maxScore: true };
-  //   });
-    
-  //   // console.log(Math.max(...a));
+      }
+      
+    })
+  }
 
-
-  //   this.state.player.map(e=>{
-  //     if(Max == e.score && e.score !== 0){
-  //       document.getElementById(`${e.id}a`).setAttribute('class', 'is-high-score')
-
-  //       console.log(e.id);
-  //   //     this.setState(prevState =>{
-  //   //   const updatedPlayer = [...prevState.player];
-  //   //   const newPlayer = {...updatedPlayer[id]};
-
-
-  //   //   // console.log(updatedPlayer);
-  //   //   // console.log(newPlayer);
-
-
-  //   //   updatedPlayer[id].score =  newPlayer.score +=1
-  //   //   return{
-  //   //     player: updatedPlayer
-  //   //   }
-
-  //   // })
-  //     }else{
-  //       this.setState((prevState) => {
-  //         return { id1: false };
-  //       });
-  //       document.getElementById(`${e.id}a`).setAttribute('class', '')
-  //     }
-
-  //   })
-  //   // console.log(Max);
-
-
-
-  //   // this.setState(prevState=>{
-  //   //   return {id1: this.state.id[0].id}
-  //   // })
-
-
-
-
-
-
-
-
-
-  // }
+  
 
   highscore = () =>{
 
@@ -136,11 +99,10 @@ class App extends React.Component {
       
     })
 
-    let a = this.state.player.map((e)=>{
+
     
-      return Math.max(e.score)
-    })
-    let Max = Math.max(...a)
+
+
 
 
     };
@@ -170,6 +132,7 @@ class App extends React.Component {
     let b = this.state.player[a-1].id + 1
     e.preventDefault()
     let namee = document.getElementById("sdashunre").value
+    
     this.setState((prevState) =>{
 
           return{
@@ -201,34 +164,27 @@ class App extends React.Component {
     return (
 
       <div className="scoreboard">
+          {/* value={{
+        players: this.state.player,
+        actions: {
+          removePlayer: this.removePlayer,
+
+        }
+      }} */}
       <Provider 
       value={this.state.player}>
 
         <Header title="scoreboard" totalPlayer={this.state.player.length}
         players ={this.state.player}
       />
-        {/* {this.state.player.map((player, i) => (
-          <Player
-            name={player.name}
-            score={player.score}
-            key={player.id}
-            id={player.id}
-            index = {i}
-            removePlayer={this.removePlayer}
-            incrementScore = {this.incrementScore}
-            dicrementScore = {this.dicrementScore}
-            ishighscore = {(this.highscore() == player.score)}
-            // crown = {this.Crown}
-            // bool = {this.state.id1? 'is-high-score' : null}
-          />
-          
-        ))} */}
+      
         <Playerlist 
         index={this.state.player.length} 
         removePlayer = {this.removePlayer}
         incrementScore = {this.incrementScore}
         dicrementScore = {this.dicrementScore}
         ishighscore = {this.highscore}
+        changeName = {this.ChangeName}
          />
 
           <Addplayer  function = {this.addPlayer}/>

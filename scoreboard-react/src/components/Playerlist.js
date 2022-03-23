@@ -9,25 +9,27 @@ export default class Playerlist extends React.Component{
     render(){
         return(
             <Consumer>
-                {context => {
+                {(context,actions) => {
                     return(
                     <>
-                        {context.map((player, i) => (
-                            <Player
-                              name={player.name}
-                              score={player.score}
+                        {context.map((player, i) => {
+
+                            
+                            return <Player
+                              {...player}
                               key={player.id}
-                              id={player.id}
                               index = {i}
                               removePlayer={this.props.removePlayer}
                               incrementScore = {this.props.incrementScore}
                               dicrementScore = {this.props.dicrementScore}
                               ishighscore = {(this.props.ishighscore() == player.score)}
-                            />
+                              changeName = {this.props.changeName}
                             
-                          ))}
+                            />
+                            }
+                          )}
                         
-                        </>
+                    </>
                     )
                 }}
             </Consumer>
