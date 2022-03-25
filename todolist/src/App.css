@@ -1,0 +1,42 @@
+.list input{
+  color: red;
+  text-decoration: line-through;
+}
+
+body{
+  background-color: bisque;
+}
+
+#root{
+  background-color: white;
+  border-radius: 5px;
+  width: 500px;
+  margin:  20px auto;
+  padding: 20px;
+
+}
+section #sdashunre{
+  width: 385px;
+  padding: 5px;
+  margin-right: 5px;
+}
+section{
+  padding: 20px;
+}
+#inputbtn{
+  background-color: aqua;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.list{
+  background-color: rgba(201, 198, 198, 0.377);
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content:  space-between;
+
+
+}

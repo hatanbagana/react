@@ -35,7 +35,6 @@ form {
 #formshuu{
   border-radius: 5px;
   display: inline-block;
-
   border-style: none;
   text-shadow: none;
   text-transform: uppercase;
@@ -51,12 +50,13 @@ form {
   border-width: 0 0 1px 0;
   margin: 15px 10px 15px 15px;
   padding: 10px;
+  border: 1px solid #635799;
   border-radius: 5px;
-  background-color: #5B45B9;
-  border-style: none;
+  background-color: white;
+
   text-shadow: none;
   text-transform: uppercase;
-  color: #C7BCF8;
+  color:#2f2366;
   letter-spacing: 2px;
   outline: none;
 }

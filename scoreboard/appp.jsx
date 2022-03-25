@@ -20,6 +20,9 @@
 
 //   const ha = <h1>sad</h1>
 
+import React from "react";
+import  ReactDOM  from "react";
+
 const players = [
     {
         name : 'hatnaa',
@@ -77,6 +80,8 @@ const Counter = (props)=>{
     //     return score--
     // }
     
+    const [score,setscore] = useState();
+    
     return(
     <div className="counter">
         <div className="counter-action decrement" onClick={(e=>{
@@ -100,6 +105,7 @@ const Player = (props) =>{
             <div className="player-name">{props.name}</div>
 
             <Counter scoree = {props.score}/>
+
 
         </div>
     )
@@ -128,3 +134,4 @@ const App = (props) =>{
 
 
 ReactDOM.render(<App gamePlayers = {players} />, document.getElementById("root"));
+

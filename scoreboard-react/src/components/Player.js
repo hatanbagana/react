@@ -12,7 +12,7 @@ class  Player  extends React.Component{
   
 
   
-  show = () =>{
+  show = (e) =>{
 
     this.setState(prevState=>{
       if(this.state.boolen){
@@ -26,14 +26,14 @@ class  Player  extends React.Component{
         }
       }
     })
+
+    e.target.focus()
   }
 
 
     changeName = (e) =>{
 
     if(this.state.boolen){
-
-
       e.preventDefault()
  
       this.setState((prevState)=>{
@@ -44,12 +44,10 @@ class  Player  extends React.Component{
       })
 
     }
-
-
-
+    e.target.focus()
   }
 
-  func_submit = () =>{
+  func_submit = (e) =>{
 
 
     this.setState(prevState=>{
@@ -58,16 +56,18 @@ class  Player  extends React.Component{
      }
     })
     this.props.changeName(this.state.name, this.props.id)
+    e.target.focus()
   }
   
   render(){
 
   const aa =
   <form id='formshuu' onSubmit={this.func_submit} >
-    <input autoComplete='off' onSubmit={this.func_submit} onChange={this.changeName} id='sdashunree' type="text"  />
+    <input autoComplete='off' onChange={this.changeName} id='sdashunree' type="text"  />
   </form>
   
   const bb = <span onClick={this.show} id={this.props.index}>{this.state.name}</span>
+
 
   // console.log(this.state.boolen);
 
