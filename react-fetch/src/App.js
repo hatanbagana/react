@@ -16,30 +16,27 @@ class  App extends React.Component {
     super();
     this.state = {
       gifs: [],
+      search: "",
     }
   }
 
-  componentDidMount(){
-    fetch('http://api.giphy.com/v1/gifs/trending?api_key=chskHp6aqKnDXIgz6KlaDIkg51LayRa1')
-    .then(response => response.json())
-    .then((data) =>{
-
-      this.setState({ gifs: data.data})
-     
-
-    }).catch((error)=>{
-      console.log('error gfetching data and parsing data ', error);
-    })
+  search = (name) =>{
+    axios.get(`http://api.giphy.com/v1/gifs/search?q=${name}}&api_key=chskHp6aqKnDXIgz6KlaDIkg51LayRa1`).then(data => this.setState({gifs: data.data.data}))
+    
   }
+
+
+
 
   render(){
 
     // console.log(this.state.gifs);
 
     // console.log(this.state);
+
     return (
       <div className="App">
-        <Header />
+        <Header search = {this.search}/>
         <Main data={this.state.gifs} />
       </div>
     );
