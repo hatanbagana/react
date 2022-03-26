@@ -12,6 +12,8 @@ export default function SearchForm(props){
 const handesubmit = (e) =>{
     e.preventDefault()
     props.search(search)
+    e.currentTarget.reset()
+    console.log('Loading...');
 
 }
 

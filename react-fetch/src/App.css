@@ -5,7 +5,10 @@
 * {
   box-sizing: border-box;
 }
-
+#solosda{
+  margin: 0 auto;
+  display: flex;
+}
 body {
   font: 1em/1.5 'Roboto', sans-serif;
   color: #4c4c4c;

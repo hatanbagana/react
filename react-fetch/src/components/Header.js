@@ -11,7 +11,7 @@ export default function Header(props) {
 
     <div className='main-header'>
         <div className='inner'>
-            <h1 className='main-title'>Search App</h1>
+            <h1 className='main-title' onClick={props.sda}>Search App</h1>
             <SearchForm search={props.search}/>
         </div>
 

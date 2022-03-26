@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Gif(props) {
 
-console.log(props.url);
+// console.log(props.url);
     return(
         <li className='gif-wrap'>
 

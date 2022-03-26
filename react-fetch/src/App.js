@@ -12,20 +12,46 @@ import axios from "axios";
 function App() {
 
   const [gifs, setGifs] = useState([]);
+  const [sda, setSda] = useState([]);
+  const [name1 , setName] = useState('')
+  const [bool, setBool] = useState(true)
   // const [searchh, setSearch] = useState('')
 
 
+  useEffect(() => {
+    setBool(true)
+
+    const fetchData = async () => {
+
+      const data = await axios.get(`http://api.giphy.com/v1/gifs/search?q=${name1}}&api_key=chskHp6aqKnDXIgz6KlaDIkg51LayRa1`)
+
+  
+
+      setGifs(data.data.data);
+
+    }
+  
+
+    fetchData().then(console.log("Done.")).finally(()=>setTimeout(() =>  setBool(false), 2000)).then(console.log(bool))
+
+      .catch(console.error);;
+  }, [name1])
+
   const search = (name) =>{
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=${name}}&api_key=chskHp6aqKnDXIgz6KlaDIkg51LayRa1`)
-    .then(data => setGifs(data.data.data))
+      setName(name)
+      // console.log(name1);
+      
   }
 
   useEffect(()=>{
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=cat}&api_key=chskHp6aqKnDXIgz6KlaDIkg51LayRa1`)
+    axios.get(`http://api.giphy.com/v1/gifs/search?q=loading}&api_key=chskHp6aqKnDXIgz6KlaDIkg51LayRa1`)
     .then(data => setGifs(data.data.data))
   }, [])
 
-
+  const handleHeader = () =>{
+    setSda(1) 
+    console.log('asdas');
+  }
 
 
 
@@ -35,8 +61,9 @@ function App() {
 
     return (
       <div className="App">
-        <Header search = {search}/>
-        <Main data={gifs} />
+        <Header search = {search} sda={handleHeader}/>
+        {bool?  <img id="solosda" src={`https://media3.giphy.com/media/xTkcEQACH24SMPxIQg/200.gif?cid=aafa5636o4w42za6wgqpjgdbzwdcra7tm3h4qpwp4ivqdwmr&rid=200.gif&ct=g`} alt="sda" />: <Main data={gifs} /> }
+        {/* <Main data={gifs} /> */}
       </div>
     );
   
