@@ -3,10 +3,10 @@ import Player from "./Player";
 import React from 'react'
 import { render } from "@testing-library/react";
 
-export default class Playerlist extends React.Component{
+export default function Playerlist(props){
 
     
-    render(){
+
         return(
             <Consumer>
                 {(context,actions) => {
@@ -19,11 +19,11 @@ export default class Playerlist extends React.Component{
                               {...player}
                               key={player.id}
                               index = {i}
-                              removePlayer={this.props.removePlayer}
-                              incrementScore = {this.props.incrementScore}
-                              dicrementScore = {this.props.dicrementScore}
-                              ishighscore = {(this.props.ishighscore() == player.score)}
-                              changeName = {this.props.changeName}
+                              removePlayer={props.removePlayer}
+                              incrementScore = {props.incrementScore}
+                              dicrementScore = {props.dicrementScore}
+                              ishighscore = {(props.ishighscore() == player.score)}
+                              changeName = {props.changeName}
                             
                             />
                             }
@@ -34,7 +34,7 @@ export default class Playerlist extends React.Component{
                 }}
             </Consumer>
         )
-    }
+    
 
 
 }

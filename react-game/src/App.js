@@ -1,35 +1,52 @@
 
-// import { useEffect, useState } from 'react';
-// import './App.css';
+import { useEffect, useState } from 'react';
+import './App.css';
+import {Table} from 'react-bootstrap'
 
-// function App() {
 
-//   const [data , setData] = useState([])
+function App() {
 
-//   useEffect(()=>{
+  const [data , setData] = useState([])
 
-//     fetch('http://localhost:300/data')
-//     .then(res => res.json())
-//     .then(data => {
-//       setData(data)
-//       console.log(data);
-//     })
-//   }, [])
-//   return (
-//     <div className="App">
-//       {/* <div className="board"></div> */}
-//       {data.map(e=>{
-//         return (
-//           <>
-//         <p>{e.name}</p>
-//         <p>{e.age}</p>
-//           </>
-//         )
-//       })}
-      
+  useEffect(()=>{
 
-//     </div>
-//   );
-// }
+    fetch('http://localhost:3000')
+    .then(res => res.json())
+    .then(data => {
+      setData(data.Data)
+      // console.log(data.Data);
+    })
+  }, [])
+  return (
+    <div className="App">
+      <Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Ner</th>
+      <th>Nas</th>
+      <th>Huis</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {data.map((person, index)=>{
+      return(
 
-// export default App;
+      <tr>
+        <td>{index+1}</td>
+        <td>{person.name}</td>
+        <td>{person.Age}</td>
+        <td>{person.gender}</td>
+        <td>{person.status}</td>
+      </tr>
+      )
+    })}
+  </tbody>
+</Table>
+
+    </div>
+  );
+}
+
+export default App;

@@ -37,20 +37,20 @@ class App extends React.Component {
 
   };
 
-  ChangeName = (name, id) =>{
-    console.log(name, id);
+  ChangeName = (name, index) =>{
+    console.log(name, index);
     this.setState((prevState)=>{
 
       const updatedPlayer = [...prevState.player];
-      const newPlayer = {...updatedPlayer[id-1]};
+      const newPlayer = {...updatedPlayer[index-1]};
       
       
       // console.log(updatedPlayer);
       // console.log(newPlayer);
       
       
-      updatedPlayer[id-1].name =  name
-      updatedPlayer[id-1].score =  0
+      updatedPlayer[index-1].name =  name
+      updatedPlayer[index-1].score =  0
       return{
         player: updatedPlayer,
 

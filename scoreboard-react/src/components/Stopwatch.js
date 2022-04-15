@@ -1,47 +1,74 @@
 
 import React from 'react'
+import { useState, useEffect } from 'react';
 
 
-class Stopwatch extends React.Component{
+function Stopwatch(){
 
-    state = {
-        isRunning : false,
-        elapsedTime : 0,
-        previousTime: 0
+    // state = {
+    //     isRunning : false,
+    //     elapsedTime : 0,
+    //     previousTime: 0
 
-    }
+    // }
 
-    componentDidMount(){
+    const [isRunning, setIs] = useState(false)
+    // const [elapsedTime, setElapsedTime] = useState(0)
+    // const [previousTime, setPreviousTime] = useState(0)
+    const [second , setSecond] = useState(0)
 
-        this.intervalID = setInterval(() => 
-            this.tick()
-        , 100);
-    }
+  
 
-    componentWillUnmount(){
-        clearInterval(this.intervalID)
-    }
+        useEffect(()=>{
+            if(isRunning){
 
-    tick= () =>{
-        if(this.state.isRunning){
-            const now = Date.now()
-            this.setState(prevState =>({
-                previousTime: now,
-                elapsedTime : prevState.elapsedTime + (now - prevState.previousTime)
-            }))
-        }
-    }
+                const interval = setInterval(() => {
+                    setSecond(second+1)
+                // //   setSecond(a)
+                // //   console.log(a);
+                //     // console.log(a);
+                }, 1000);
+        
+                return ()=>clearInterval(interval)
 
-    handleStopwatch = () =>{
-        this.setState(prevState=>{
-            return {isRunning : !prevState.isRunning}
-        })
-        if (!this.state.isRunning) {
-            this.setState(prevState=>({
-                previousTime: Date.now()
-            }))
-        }
-        console.log(this.state.isRunning);
+            }
+            // if (!isRunning) {
+            //     // console.log(!isRunning);
+            //     clearInterval(stopwatch)
+            // }
+        },[isRunning, second])
+        
+
+    // componentWillUnmount(){
+    //     clearInterval(this.intervalID)
+    // }
+
+    // const tick = () =>{
+    //     if(isRunning){
+    //         setSecond(second + 1)
+    //         // this.setState(prevState =>({
+    //         //     previousTime: now,
+    //         //     elapsedTime : prevState.elapsedTime + (now - prevState.previousTime)
+    //         // }))
+    //     }
+    // }
+
+    const handleStopwatch = () =>{
+        setIs(!isRunning)
+        setSecond(second)
+
+      
+        // console.log('gi');
+        // this.setState(prevState=>{
+        //     return {isRunning : !prevState.isRunning}
+        // })
+        // if (!isRunning) {
+        //     setPreviousTime(Date.now())
+        //     // this.setState(prevState=>({
+        //     //     previousTime: Date.now()
+        //     // }))
+        // }
+        // console.log(isRunning);
     }
 
  
@@ -57,24 +84,21 @@ class Stopwatch extends React.Component{
     //     clearInterval(sda)
 
     // }
-    render(){
-        const a = Math.floor(this.state.elapsedTime/100)
+
+        // const a = Math.floor(elapsedTime/100)
 
         return(
         <div className="stopwatch">
-                <h2 onClick={this.date}>Stopwatch</h2>
-                <div className="stopwatch-time">{a}</div>
-                <button id='stopwatch-start' onClick={this.handleStopwatch}>{this.state.isRunning? "STOP":"START"}</button>
+                <h2 >Stopwatch</h2>
+                <div className="stopwatch-time">{second}</div>
+                <button id='stopwatch-start' onClick={handleStopwatch}>{isRunning? "STOP":"START"}</button>
                 <button onClick={()=>{
-                    this.setState(()=>{
-                        return{
-                            elapsedTime: 0
-                        }
-                    })
+                    
+                    setSecond(0)
                 }}>RESET</button>
         </div>
         )
-    }
+    
 }
 
 

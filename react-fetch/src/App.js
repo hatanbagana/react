@@ -32,7 +32,7 @@ function App() {
     }
   
 
-    fetchData().then(console.log("Done.")).finally(()=>setTimeout(() =>  setBool(false), 2000)).then(console.log(bool))
+    fetchData().then(console.log("Done.")).finally(()=>setTimeout(() =>  setBool(false), 1000)).then(console.log(bool))
 
       .catch(console.error);;
   }, [name1])
@@ -61,8 +61,8 @@ function App() {
 
     return (
       <div className="App">
-        <Header search = {search} sda={handleHeader}/>
         {bool?  <img id="solosda" src={`https://media3.giphy.com/media/xTkcEQACH24SMPxIQg/200.gif?cid=aafa5636o4w42za6wgqpjgdbzwdcra7tm3h4qpwp4ivqdwmr&rid=200.gif&ct=g`} alt="sda" />: <Main data={gifs} /> }
+        <Header search = {search} sda={handleHeader}/>
         {/* <Main data={gifs} /> */}
       </div>
     );

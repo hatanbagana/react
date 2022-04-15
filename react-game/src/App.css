@@ -1,7 +1,26 @@
+
+
 .board{
-  background-color: rgb(221, 201, 201);
-  width: 2000px;
-  height: 1000px;
+  background-color: rgb(247, 240, 240);
+  width: 600px;
+  height: 600px;
   margin: 0 auto;
   margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto ;
+
+}
+.item{
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  margin: 0;
+  font-size: 50px;
+}
+.item:hover{
+  background-color: white;
+  cursor: pointer;
 }
