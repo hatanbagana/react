@@ -5,10 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App1() {
   const [array1, setArray1] = useState([
-    ["1", "2", "3"],
-    ["4", "5", "6"],
-    ["7", "0", "8"],
+    ["1.jpg", "2.jpg", "3.jpg"],
+    ["4.jpg", "5.jpg", "6.jpg"],
+    ["7.jpg", "8.jpg", "0.png"],
   ]);
+  const [winPos, setWinPos] = useState()
   const [changed, setChanged] = useState(false);
   function shuffle(array) { 
     return array.sort(() => Math.random() - 0.5);
@@ -17,18 +18,23 @@ export default function App1() {
   const [pos, setPos] = useState()
 
   useEffect(()=>{
+    setWinPos([
+      ["1.jpg", "2.jpg", "3.jpg"],
+      ["4.jpg", "5.jpg", "6.jpg"],
+      ["7.jpg", "8.jpg", "0.png"],
+    ])
     setArray1(array1.map(row=>shuffle(row)))
     setPos(findZeroClicked())
-    // debugger
+
   },[])
 
-  
+ 
 
   function handleChange(id,rowIndex,colIndex) {
-    console.log(rowIndex,colIndex)
+
+
     if (validation(id,rowIndex,colIndex)) {
-      // findPosClicked(id);
-      // console.log(clicked)
+
       let temp = array1;
       let temp1 = temp[pos[0]][pos[1]];
       temp[pos[0]][pos[1]] = temp[rowIndex][colIndex];
@@ -38,6 +44,8 @@ export default function App1() {
       setArray1(temp);
       setChanged(!changed);
     }
+
+    checkWinning()
   }
 
 
@@ -46,7 +54,7 @@ export default function App1() {
     let col = array1[0].length;
     for (let i = 0; i < row; i++) {
       for (let j = 0; j < col; j++) {
-        if (array1[i][j] == "0") {
+        if (array1[i][j] == "0.png") {
           return [i, j];
         }
       }
@@ -54,15 +62,39 @@ export default function App1() {
   }
 
   function validation(id,row,col) {
-    console.log("row = ", row)
-    console.log("col = ", col)
-    console.log('sdave');
 
 
+    if(winPos === array1){
+      console.log("Yalla bandia");
+      return false;
+    }else{
+
+      return true;
+    }
 
 
-    return true;
   }
+
+
+  
+  function checkWinning(){
+    for (let i = 0; i < array1.length; i++) {
+      for (let j = 0; j < array1[1].length; j++) {
+        if(array1[i][j] !== winPos[i][j]){
+          return false
+        }
+        
+      }
+      
+    }
+    setTimeout(() => {
+      
+      alert('yalla');
+    }, 1000);
+  }
+
+
+
 
   return (
     <div>
