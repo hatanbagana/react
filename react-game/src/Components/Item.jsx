@@ -1,18 +1,14 @@
 import React from "react";
 
 export default function Item(props) {
-//   console.log(props.value);
-//   console.log('asdas');
-  return (
 
-    <>
-      {props.value.map((e) => {
-        return (
-          <div className="item" key={e} onClick={() => props.func(e)}>
-            {e}
-          </div>
-        );
-      })}
-    </>
+
+
+  return (
+    <div className="item" key={props.data} onClick={() => props.func(props.data,props.rowIndex,props.colIndex)}>
+
+      <img src={`/images/${props.data}`} alt="" />
+
+    </div>
   );
 }
