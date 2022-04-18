@@ -1,14 +1,17 @@
-import React from 'react'
+import React from "react";
 
-function Addplayer(props){
-return(
+function Addplayer(props) {
+  return (
     <form onSubmit={props.function}>
-
-        <input  autoComplete='off' type="text" placeholder='Add new player' id='sdashunre' />
-        <input type="submit" value={"Add Player"}  />
-        </form>
-)
+      <input
+        autoComplete="off"
+        type="text"
+        placeholder="Add new player"
+        id="sdashunre"
+      />
+      <input type="submit" value={"Add Player"} />
+    </form>
+  );
 }
 
-
-export default Addplayer
+export default Addplayer;
