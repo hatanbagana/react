@@ -30,6 +30,7 @@ export default function App1() {
     let array2 = array1.map((row) => shuffle(row))
     setArray1(array2);
     setPos(findZeroClicked());
+    // eslint-disable-next-line
   }, []);
 
   function handleChange(id, rowIndex, colIndex) {
